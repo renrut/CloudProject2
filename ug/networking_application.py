@@ -16,7 +16,7 @@ h2=0  #host2
 h3=0  #host3
 s1=0  #switch1
 s2=0  #switch2
-net = Mininet( topo = topo, controller=OVSController, link=TCLink )
+net = Mininet( topo = Topo, controller=OVSController, link=TCLink )
 net.addController( 'c0' )
 def silentremove(filename):
     try:
