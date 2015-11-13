@@ -60,12 +60,12 @@ def addSwitches():
     "2. You need to write something like this s1 = net.addSwitch(<parameters>)"
 
     info( '\nadding switch s1:' )
-	
-	s1 = net.addSwitch("s1")
+    
+    s1 = net.addSwitch("s1")
     
     info( '\nadding switch s2:' )
 	
-	s2 = net.addSwitch("s2")
+    s2 = net.addSwitch("s2")
 
 
 def setLinks():
@@ -79,17 +79,17 @@ def setLinks():
 
 
     info( '\nsetting a link between switch s1 and host h1\n' )
-	net.addLink(s1, h1)
+    net.addLink(s1, h1)
 
 
     info( '\nsetting a link between switch s1 and host h2\n' )
-	net.addLink(s1, h2)
+    net.addLink(s1, h2)
 
     info( '\nsetting a link between switch s2 and host h3\n' )
-	net.addLink(s2, h3)
+    net.addLink(s2, h3)
 
     info( '\nsetting a link between switch s1 and switch s2\n' )
-	net.addLink(s1, h2)
+    net.addLink(s1, h2)
 
 
 def networking_application():
@@ -106,7 +106,7 @@ def networking_application():
 
     info( '\nrunning a command on h3\n' )
     command =  "/bin/bash -c 'while true; do ping -D -c 4 10.0.0.1 &>> /vagrant/h3-h1-ping.log; ping -D -c 4 10.0.0.2 &>> /vagrant/h3-h2-ping.log; sleep 1; done' "
-	pingh3 = h3.sendCmd(command)
+    pingh3 = h3.sendCmd(command)
 
 
     "normal case: when all links are working"
