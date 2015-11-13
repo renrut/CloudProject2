@@ -16,7 +16,7 @@ h2=0  #host2
 h3=0  #host3
 s1=0  #switch1
 s2=0  #switch2
-net = Mininet( topo = Topo, controller=Controller, link=TCLink )
+net = Mininet(controller=Controller, link=TCLink )
 net.addController( 'c0' )
 def silentremove(filename):
     try:
@@ -40,16 +40,16 @@ def addHosts():
     h1 = net.addHost('h1', ip='10.0.0.1')
 
     info( '\nadding host h2' )
-    h2 = net.addHost('h', ip='10.0.0.2')
+    h2 = net.addHost('h2', ip='10.0.0.2')
 
     info( '\nadding host h3' )
-    h3 = net.addHost('h1', ip='10.0.0.3')
+    h3 = net.addHost('h3', ip='10.0.0.3')
     
     info( '\nadding host h4' )
-    h4 = net.addHost('h1', ip='10.0.0.4')
+    h4 = net.addHost('h4', ip='10.0.0.4')
     
     info( '\nadding host h5' )
-    h5 = net.addHost('h1', ip='10.0.0.5')
+    h5 = net.addHost('h5', ip='10.0.0.5')
 
 
 
@@ -96,7 +96,7 @@ def networking_application():
     "obtaining the values of hosts from network."
     h1 = net.get('h1')  
     h2 = net.get('h2')  
-    h3=  net.get('h3')  
+    h3 =  net.get('h3')  
 
 
     "1. Run following command on h3"
@@ -111,25 +111,25 @@ def networking_application():
 
     "normal case: when all links are working"
     info( '\n(Normal Case): when all links are working\n' )
-    time.sleep(50);
+    time.sleep(2);
 
 
 
     "fault 1: bring down link between h1 and s1"
     info( '\n(Fault 1): Bringing down link between h1 and s1\n' )
     "write your code here. use net.configLinkStatus command"
-    net.configLinkStatus(h1, s1, "down")
-    time.sleep(50)
+    net.configLinkStatus('h1', 's1', "down")
+    time.sleep(2)
 
 
     "fault 2: bring down link between s1 and s2 . (first, bring up link between h1 and s1 that you just brought down)"
     info( '\n(Fault 2): Bringing down link between s1 and s2\n' )
     "write your code here. use net.configLinkStatus command"
-    net.configLinkStatus(h1, s1, "up")
-    net.configLinkStatus(s1, s2, "down")
+    net.configLinkStatus('h1', 's1', "up")
+    net.configLinkStatus('s1', 's2', "down")
 
 
-    time.sleep(50)
+    time.sleep(2)
 
 
     "now you can check the h3-h1-ping.log and h3-h2-ping.log files in the current folder of your laptop or at /vagrant folder of the VM "
