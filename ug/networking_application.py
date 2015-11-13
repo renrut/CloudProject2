@@ -141,13 +141,13 @@ def networking_application():
 if __name__ == '__main__':
     setLogLevel( 'info' )
     info( '\n(1) Adding Hosts..(removing first if exists)\n' )
-    #addHosts();    # Uncomment this line and implement this function. see above
+    addHosts();    # Uncomment this line and implement this function. see above
     info( '\n\n(2) Adding switches..(removing first if exists)\n' )
-    #addSwitches(); # Uncomment this line and implement this function. see above
+    addSwitches(); # Uncomment this line and implement this function. see above
     info( '\n\n(3) Setting Links amongst Hosts and Switches\n')
-    #setLinks(); # Uncomment this line and implement this function. see above
+    setLinks(); # Uncomment this line and implement this function. see above
     info( '\n\n(4) Starting mininet virtual network\n')
-    #net.start() # Uncomment this line
+    net.start() # Uncomment this line
     info( '\n\n(5) Deploying networking_application on this mininet network topology\n' )
-    #networking_application(); # Uncomment this line and implement this function. see above
+    networking_application(); # Uncomment this line and implement this function. see above
   
