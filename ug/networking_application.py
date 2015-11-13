@@ -10,7 +10,6 @@ from mininet.topo import Topo
 from mininet.link import TCLink
 from mininet.util import isShellBuiltin, dumpNodeConnections
 
-
 "global variables"
 h1=0  #host1
 h2=0  #host2
@@ -38,13 +37,19 @@ def addHosts():
     "4. You need to write something like this h1 = net.addHost(<parameters>)"
     "5. e.g. h1 = net.addHost('h1', ip='x.x.x.x')"
     info( '\nadding host h1' )
-    "write your code here"
+    h1 = net.addHost('h1', ip='10.0.0.1')
 
     info( '\nadding host h2' )
-    "write your code here"
+    h2 = net.addHost('h1', ip='10.0.0.2')
 
     info( '\nadding host h3' )
-    "write your code here"
+    h3 = net.addHost('h1', ip='10.0.0.3')
+    
+    info( '\nadding host h4' )
+    h4 = net.addHost('h1', ip='10.0.0.4')
+    
+    info( '\nadding host h5' )
+    h5 = net.addHost('h1', ip='10.0.0.5')
 
 
 
@@ -53,12 +58,14 @@ def addSwitches():
 
     "1. Add two switches s1 and s2"
     "2. You need to write something like this s1 = net.addSwitch(<parameters>)"
+
     info( '\nadding switch s1:' )
-    "write your code here"
-
+	
+	s1 = net.addSwitch("s1")
+    
     info( '\nadding switch s2:' )
-    "write your code here"
-
+	
+	s2 = net.addSwitch("s2")
 
 
 def setLinks():
@@ -72,16 +79,17 @@ def setLinks():
 
 
     info( '\nsetting a link between switch s1 and host h1\n' )
-    "write your code here"
+	net.addLink(s1, h1)
+
 
     info( '\nsetting a link between switch s1 and host h2\n' )
-    "write your code here"
+	net.addLink(s1, h2)
 
     info( '\nsetting a link between switch s2 and host h3\n' )
-    "write your code here"
+	net.addLink(s2, h3)
 
     info( '\nsetting a link between switch s1 and switch s2\n' )
-    "write your code here"
+	net.addLink(s1, h2)
 
 
 def networking_application():
@@ -97,7 +105,8 @@ def networking_application():
     "4. You need to something like pingh3 = h3.sendCmd(<command>)"
 
     info( '\nrunning a command on h3\n' )
-    "write your code here"
+    command =  "/bin/bash -c 'while true; do ping -D -c 4 10.0.0.1 &>> /vagrant/h3-h1-ping.log; ping -D -c 4 10.0.0.2 &>> /vagrant/h3-h2-ping.log; sleep 1; done' "
+	pingh3 = h3.sendCmd(command)
 
 
     "normal case: when all links are working"
@@ -109,13 +118,14 @@ def networking_application():
     "fault 1: bring down link between h1 and s1"
     info( '\n(Fault 1): Bringing down link between h1 and s1\n' )
     "write your code here. use net.configLinkStatus command"
-
+    net.configLinkStatus(h1, s1, "down")
     time.sleep(50)
 
 
     "fault 2: bring down link between s1 and s2 . (first, bring up link between h1 and s1 that you just brought down)"
     info( '\n(Fault 2): Bringing down link between s1 and s2\n' )
     "write your code here. use net.configLinkStatus command"
+    net.configLinkStatus(s1, s2, "down")
 
 
     time.sleep(50)
