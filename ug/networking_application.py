@@ -2,7 +2,7 @@
 
 import re, sys, time, select, os, subprocess, threading, errno
 from mininet.net import Mininet
-from mininet.node import Controller, Host, CPULimitedHost
+from mininet.node import OVSController, Host, CPULimitedHost
 from mininet.cli import CLI
 from mininet.log import setLogLevel, info, debug
 from optparse import OptionParser
@@ -16,7 +16,7 @@ h2=0  #host2
 h3=0  #host3
 s1=0  #switch1
 s2=0  #switch2
-net = Mininet( controller=Controller, link=TCLink )
+net = Mininet( topo = topo, controller=OVSController, link=TCLink )
 net.addController( 'c0' )
 def silentremove(filename):
     try:
