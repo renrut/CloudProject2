@@ -40,7 +40,7 @@ def addHosts():
     h1 = net.addHost('h1', ip='10.0.0.1')
 
     info( '\nadding host h2' )
-    h2 = net.addHost('h1', ip='10.0.0.2')
+    h2 = net.addHost('h', ip='10.0.0.2')
 
     info( '\nadding host h3' )
     h3 = net.addHost('h1', ip='10.0.0.3')
@@ -125,6 +125,7 @@ def networking_application():
     "fault 2: bring down link between s1 and s2 . (first, bring up link between h1 and s1 that you just brought down)"
     info( '\n(Fault 2): Bringing down link between s1 and s2\n' )
     "write your code here. use net.configLinkStatus command"
+    net.configLinkStatus(h1, s1, "up")
     net.configLinkStatus(s1, s2, "down")
 
 
